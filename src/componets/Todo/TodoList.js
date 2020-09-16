@@ -1,5 +1,5 @@
 import React from 'react'
-import '../App.css'
+import '../../App'
 import Todo from './Todo'
 
 const TodoList = (props) =>
