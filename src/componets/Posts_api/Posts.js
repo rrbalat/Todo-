@@ -3,30 +3,45 @@ import { Route, Link } from 'react-router-dom'
 
 const Post = ({ match }) => <p>{match.params.id}</p>
 
+const API = 'https://jsonplaceholder.typicode.com/posts?_limit=10'
+
 class Posts extends Component
 {
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            posts: []
+        }
+    }
+
+    componentDidMount = () =>
+    {
+        fetch(API)
+            .then(response => response.json())
+            .then(data => this.setState({ posts: data }))
+            .then(console.log(this.props))
+    }
     render()
     {
-        const { params } = this.props.match
+        const { posts } = this.state
+
         return (
-            <div>
-                <h1>Posts</h1>
-                <strong>Select a post</strong>
-                <ul>
-                    <li>
-                        <Link to="/posts/1">Post 1</Link>
-                    </li>
-                    <li>
-                        <Link to="/posts/2">Post 2</Link>
-                    </li>
-                    <li>
-                        <Link to="/posts/3">Post 3</Link>
-                    </li>
-                </ul>
-                <Route path="/posts/:id" component={Post} />
+            <div className="wrapper">
+                {
+                    <ul>
+                        {posts.map(post =>
+                            <li key={post.id} className="card frame li-margin">
+                                <Link to={`/posts/${post.id}`}>{post.id} - {post.title}</Link>
+                            </li>
+                        )}
+                    </ul>
+
+                }
             </div>
         )
     }
 }
+
 
 export default Posts

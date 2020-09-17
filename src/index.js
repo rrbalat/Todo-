@@ -6,6 +6,7 @@ import App from './App'
 import TodoApp from './componets/TodoApp'
 import Posts from './componets/Posts_api/Posts'
 import NotFound from './componets/NotFound'
+import PostDetail from './componets/Posts_api/PostDetail'
 
 const routing = (
   <Router>
@@ -25,7 +26,8 @@ const routing = (
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/todo" component={TodoApp} />
-        <Route path="/posts" component={Posts} />
+        <Route exact path="/posts" component={Posts} />
+        <Route exact path="/posts/:id" component={PostDetail} />
         <Route component={NotFound} />
       </Switch>
     </div>
