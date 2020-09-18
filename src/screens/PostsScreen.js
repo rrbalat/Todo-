@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
+import '../App'
 
 const Post = ({ match }) => <p>{match.params.id}</p>
 
 const API = 'https://jsonplaceholder.typicode.com/posts?_limit=10'
 
-class Posts extends Component
+class PostsScreen extends Component
 {
     constructor(props)
     {
@@ -43,5 +44,4 @@ class Posts extends Component
     }
 }
 
-
-export default Posts
+export default PostsScreen

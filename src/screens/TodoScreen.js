@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import '../App';
-import TodoList from './Todo/TodoList'
-import SubmitForm from './Todo/SubmitForm'
+import React, { Component } from 'react'
+import '../App'
+import TodoList from '../componets/Todo/TodoList'
+import SubmitForm from '../componets/Todo/SubmitForm'
 
-class App extends Component
+class TodoScreen extends Component
 {
     state = {
         tasks: ['task1', 'task2', 'task3']
@@ -17,6 +17,7 @@ class App extends Component
     handleDelete = (index) =>
     {
         const newArray = [...this.state.tasks]
+        // filter 
         newArray.splice(index, 1)
         this.setState({ tasks: newArray })
     }
@@ -36,4 +37,4 @@ class App extends Component
     }
 }
 
-export default App;
+export default TodoScreen
