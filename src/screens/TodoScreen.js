@@ -5,32 +5,48 @@ import SubmitForm from '../componets/Todo/SubmitForm'
 
 class TodoScreen extends Component
 {
-    state = {
-        tasks: ['task1', 'task2', 'task3']
-    }
-
-    handleSubmit = task =>
+    constructor(props)
     {
-        this.setState({ tasks: [...this.state.tasks, task] })
+        super()
+        this.state = {
+            tasks: [
+                { id: 'tid1', title: 'task1' },
+                { id: 'tid2', title: 'task2' },
+                { id: 'tid3', title: 'task3' },
+            ]
+        }
     }
 
-    handleDelete = (index) =>
+    handleSubmit = taskProps =>
+    {
+        if (taskProps.title)
+        {
+            this.setState({
+                tasks: [...this.state.tasks, taskProps]
+            })
+        }
+    }
+
+    handleDelete = (id) =>
     {
         const newArray = [...this.state.tasks]
-        // filter 
-        newArray.splice(index, 1)
+        // filter
+        newArray.filter((task) =>
+            task.id !== id
+        )
+
         this.setState({ tasks: newArray })
     }
 
     render()
     {
+        console.log(this.state.tasks);
         return (
-
             <div className="wrapper">
                 <h1>Todo App</h1>
                 <div className="card frame">
-                    <TodoList tasks={this.state.tasks} onDelete={this.handleDelete} />
-                    <SubmitForm onFormSubmit={this.handleSubmit} />
+                    <TodoList tasks={this.state.tasks} onClick={this.handleDelete} />
+                    <SubmitForm handleSubmit={this.handleSubmit} />
                 </div>
             </div>
         );

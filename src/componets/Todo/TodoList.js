@@ -4,10 +4,14 @@ import Todo from './Todo'
 
 const TodoList = (props) =>
 {
-    const todos = props.tasks.map((todo, index) =>
+
+    const todos = props.tasks.map((todo) =>
     {
+        console.log(todo)
         return (
-            <Todo content={todo} key={index} id={index} onDelete={props.onDelete} />
+            <React.Fragment key={todo.id}>
+                <Todo title={todo.title} id={todo.id} onDelete={props.onDelete} />
+            </React.Fragment>
         )
     })
     return (

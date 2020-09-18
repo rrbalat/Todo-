@@ -4,10 +4,12 @@ import '../../App'
 const Todo = (props) =>
 {
     return (
-        <div className='list-item'>
-            {props.content}
-            <button className="margin-r" onClick={() => { props.onDelete(props.id) }}>Delete</button>
-        </div>
+        <React.Fragment>
+            <div className='list-item'>
+                {props.title}
+                <button className="margin-r" onClick={() => { props.onDelete(props.id) }}>Delete</button>
+            </div>
+        </React.Fragment>
     )
 }
 

@@ -13,10 +13,10 @@ class Post extends Component
 
     componentDidMount = () =>
     {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${this.props.match.params.id}`)
-            .then(response => response.json())
-            .then(data => this.setState({ post: data }))
-            .then(console.log(this.props.match))
+        // fetch(`https://jsonplaceholder.typicode.com/posts/${this.props.match.params.id}`)
+        //     .then(response => response.json())
+        //     .then(data => this.setState({ post: data }))
+        //     .then(console.log(this.props.match))
     }
     render()
     {
