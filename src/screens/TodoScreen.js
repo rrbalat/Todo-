@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../App'
-import TodoList from '../componets/Todo/TodoList'
-import SubmitForm from '../componets/Todo/SubmitForm'
 
-class TodoScreen extends Component
+class TodoScreen extends React.Component
 {
     constructor(props)
     {
@@ -13,44 +11,57 @@ class TodoScreen extends Component
                 { id: 'tid1', title: 'task1' },
                 { id: 'tid2', title: 'task2' },
                 { id: 'tid3', title: 'task3' },
-            ]
+            ],
+            task: { id: '', title: '' }
         }
     }
 
-    handleSubmit = taskProps =>
+    handleInput = (event) =>
     {
-        if (taskProps.title)
-        {
-            this.setState({
-                tasks: [...this.state.tasks, taskProps]
-            })
-        }
+        this.setState({
+            task: { id: Date.now(), title: event.target.value }
+        })
+        console.log(this.state.task.title);
+    }
+
+    handleSubmit = () =>
+    {
+        this.setState({
+            tasks: [...this.state.tasks, this.state.task]
+        })
     }
 
     handleDelete = (id) =>
     {
-        const newArray = [...this.state.tasks]
-        // filter
-        newArray.filter((task) =>
-            task.id !== id
-        )
+        const tasks = this.state.tasks.filter(task => task.id !== id)
+        this.setState({ tasks: tasks })
 
-        this.setState({ tasks: newArray })
     }
 
     render()
     {
-        console.log(this.state.tasks);
         return (
-            <div className="wrapper">
-                <h1>Todo App</h1>
-                <div className="card frame">
-                    <TodoList tasks={this.state.tasks} onClick={this.handleDelete} />
-                    <SubmitForm handleSubmit={this.handleSubmit} />
+            <div>
+                <div>
+                    <input type="text" value={this.state.task.title} placeholder="Enter Activity" onChange={this.handleInput} />
+                    <button onClick={this.handleSubmit}>Submit</button>
+                </div>
+                <div>
+                    {this.state.tasks.map(task =>
+                    {
+                        return (
+                            <div key={task.id} task={task}>
+                                <li>{task.title}</li>
+                                <button onClick={() => this.handleDelete(task.id)}>Delete</button>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
-        );
+        )
     }
+
+
 }
 
 export default TodoScreen
