@@ -1,6 +1,7 @@
 import React from 'react'
 import '../App'
 import SubmitForm from '../componets/Todo/SubmitForm'
+import TodoList from '../componets/Todo/TodoList'
 
 class TodoScreen extends React.Component
 {
@@ -44,17 +45,7 @@ class TodoScreen extends React.Component
         return (
             <div>
                 <SubmitForm value={this.state.task.title} onChange={this.handleInput} onClick={this.handleSubmit} />
-                <div>
-                    {this.state.tasks.map(task =>
-                    {
-                        return (
-                            <div key={task.id} task={task}>
-                                <li>{task.title}</li>
-                                <button onClick={() => this.handleDelete(task.id)}>Delete</button>
-                            </div>
-                        )
-                    })}
-                </div>
+                <TodoList tasks={this.state.tasks} onClick={this.handleDelete} />
             </div>
         )
     }

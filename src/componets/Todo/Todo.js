@@ -1,9 +1,9 @@
 import React from 'react'
 import '../../App'
 
-class Todo extends React.Component
+class TodoTitle extends React.Component
 {
 
 }
 
-export default Todo
+export default TodoTitle
