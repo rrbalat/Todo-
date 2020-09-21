@@ -1,5 +1,6 @@
 import React from 'react'
 import '../App'
+import SubmitForm from '../componets/Todo/SubmitForm'
 
 class TodoScreen extends React.Component
 {
@@ -42,10 +43,7 @@ class TodoScreen extends React.Component
     {
         return (
             <div>
-                <div>
-                    <input type="text" value={this.state.task.title} placeholder="Enter Activity" onChange={this.handleInput} />
-                    <button onClick={this.handleSubmit}>Submit</button>
-                </div>
+                <SubmitForm value={this.state.task.title} onChange={this.handleInput} onClick={this.handleSubmit} />
                 <div>
                     {this.state.tasks.map(task =>
                     {
